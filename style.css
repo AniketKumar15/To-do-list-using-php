@@ -1,0 +1,311 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", serif;
+}
+body {
+  height: calc(100vh - 80px);
+  background: url("./Img/bg.png") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+/*----------------------- NavBar Started Here -----------------------*/
+.navBar {
+  width: 100%;
+  background: #eeeeeee7;
+  padding: 1rem 3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  z-index: 20;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+/* --- Logo Section Style ---*/
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+.logoContainer img {
+  width: 30px;
+  filter: drop-shadow(0 0 3px rgb(145, 145, 145));
+}
+/* --- user Auth Section Style ---*/
+.useAuth {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.useAuth a {
+  text-decoration: none;
+  color: white;
+  background: #007bff;
+  padding: 3px 7px;
+  border-radius: 5px;
+  transition: all 0.2s linear;
+}
+.useAuth a:hover {
+  background: #ffffff;
+  color: black;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+/* --- Responsive Style ---*/
+@media screen and (min-width: 601px) {
+  .logoContainer span {
+    font-size: 16px;
+  }
+  .logoContainer img {
+    width: 30px;
+  }
+  .useAuth a {
+    font-size: 16px;
+  }
+}
+/* If the screen size is 600px wide or less, set the font-size of a tag to 10px */
+@media screen and (max-width: 600px) {
+  .logoContainer span {
+    font-size: 12px;
+  }
+  .logoContainer img {
+    width: 20px;
+  }
+  .useAuth a {
+    font-size: 10px;
+  }
+}
+/*----------------------- NavBar ended Here -----------------------*/
+
+/*----------------------- Input Task Started Here -----------------------*/
+.input-container {
+  /* background: #f8f9fa; */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  width: 90%;
+  border-radius: 8px;
+  margin: auto;
+  margin-top: 5rem;
+
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.priority-selector {
+  display: flex;
+  gap: 5px;
+}
+
+.priority-selector label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.priority-selector input {
+  display: none;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.red {
+  background: red;
+}
+.orange {
+  background: orange;
+}
+.green {
+  background: green;
+}
+.priority-selector input:checked + .dot {
+  border: 2px solid white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+button {
+  padding: 10px 15px;
+  border: none;
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  color: black;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  .input-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  input,
+  button {
+    width: 100%;
+  }
+}
+/*----------------------- Input Task Ended Here -----------------------*/
+
+/*----------------------- To Do Data Table Started Here -----------------------*/
+.toDoInfo {
+  width: 90%;
+  max-width: 900px;
+  margin: 1.5rem auto;
+  padding: 20px;
+  height: calc(100dvh - 200px);
+
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+}
+
+.tableData {
+  background: #ffffff;
+  border-radius: 10px;
+  height: 100%;
+  overflow-x: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For IE/Edge */
+}
+.tableData::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead {
+  position: sticky;
+  top: 0; /* Sticks to the top */
+  background: #ffffff; /* Ensures it's visible */
+  z-index: 10; /* Keeps it above the table body */
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #f2f2f2;
+  color: black;
+}
+
+tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+.priority-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.high {
+  background: red;
+}
+.medium {
+  background: orange;
+}
+.low {
+  background: green;
+}
+
+.btn-container {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn i {
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn i:hover {
+  transform: scale(1.1);
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 5%;
+}
+th:nth-child(2),
+td:nth-child(2) {
+  width: 50%;
+}
+th:nth-child(3),
+td:nth-child(3) {
+  width: 5%;
+}
+th:nth-child(4),
+td:nth-child(4) {
+  width: 10%;
+}
+th:nth-child(5),
+td:nth-child(5) {
+  width: 5%;
+}
+
+@media screen and (max-width: 600px) {
+  th,
+  td {
+    padding: 5px;
+    font-size: 11px;
+  }
+  td:nth-child(2) {
+    font-size: 11px;
+  }
+  .toDoInfo {
+    height: calc(100dvh - 280px);
+  }
+  .btn i {
+    font-size: 14px;
+  }
+}
+
+/*----------------------- To Do Data Table Ended Here -----------------------*/

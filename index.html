@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List | Do your task on time</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <!-------------- NavBar Section ---------------->
+  <nav class="navBar">
+    <div class="logoContainer">
+      <img src="./Img/Logo.png" alt="logo">
+      <span>To-Do Manager</span>
+    </div>
+
+    <div class="useAuth">
+      <a href="#">Login</a>
+      <a href="#">Sign-Up</a>
+    </div>
+  </nav>
+
+  <!-------------- To Do Add Section  ---------------->
+  <div class="input-container">
+    <input type="text" placeholder="Enter your task...">
+
+    <div class="priority-selector">
+      <label>
+        <input type="radio" name="priority" value="high" checked>
+        <span class="dot red"></span>
+      </label>
+      <label>
+        <input type="radio" name="priority" value="medium">
+        <span class="dot orange"></span>
+      </label>
+      <label>
+        <input type="radio" name="priority" value="low">
+        <span class="dot green"></span>
+      </label>
+    </div>
+
+    <button>Add Note</button>
+  </div>
+  <!-------------- To Do Info Section  ---------------->
+  <div class="toDoInfo">
+    <div class="tableData">
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Task</th>
+            <th>Priority</th>
+            <th>Action</th>
+            <th>Done</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Finish Project</td>
+            <td><span class="priority-dot high"></span></td>
+            <td>
+              <div class="btn-container">
+                <span class="btn"><i class="fas fa-edit" style="color: #28a745;"></i></span>
+                <span class="btn"><i class="fas fa-trash" style="color: #dc3545;"></i></span>
+              </div>
+            </td>
+            <td><input type="checkbox"></td>
+          </tr>
+          <!-- Extra -->
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+
+</html>
