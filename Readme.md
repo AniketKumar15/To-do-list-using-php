@@ -7,8 +7,8 @@ This is a simple **To-Do List App** with user authentication, allowing each user
 - ✅ **Task Management** (Add, Edit, Delete Tasks)
 - ✅ **Priority System** (Low 🟢, Medium 🟠, High 🔴)
 - ✅ **Responsive UI** with a modern design
+- ✅ **Task Completion Status** (Planned)
 - 🔄**User Authentication** (Login & Signup)
-- 🔄 **Task Completion Status** (Planned)
 - 🔄 **Sorting & Filtering Tasks** (Planned)
 - 🔄 **Dark Mode Support** (Planned)
 
