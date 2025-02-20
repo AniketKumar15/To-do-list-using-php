@@ -73,40 +73,7 @@ window.addEventListener("click", (event) => {
 });
 
 // Done modal Section
-// let doneCheckBox = document.querySelectorAll(".isDoneBox");
-// let doneModal = document.getElementById("doneModal");
-// let doneTaskId = document.getElementById("doneTaskId");
-// let closeDoneModal = document.querySelector(".doneClose");
-// let isCheck = false;
-
-// const hideModalDone = () => {
-//   doneModal.style.display = "none"; // Hide modal
-//   isCheck = false;
-// };
-// const openModalDone = (taskId) => {
-//   doneModal.style.display = "flex"; // Show modal
-//   doneTaskId.value = taskId; // Set hidden input with task ID
-// };
-
-// doneCheckBox.forEach((btn) => {
-//   if (btn.checked) {
-//     btn.disabled = true; // Disable if already checked
-//   }
-// });
-
-// doneCheckBox.forEach((btn) => {
-//   btn.addEventListener("click", (e) => {
-//     //btn.disabled = true; // Disable the clicked checkbox
-//     const taskRow = e.target.closest("tr"); // Get parent row
-//     const taskId = taskRow.querySelector(".task-idReal").textContent.trim();
-
-//     openModalDone(taskId);
-//   });
-// });
-
-// closeDoneModal.addEventListener("click", hideModalDone);
-
-let doneCheckBoxes = document.querySelectorAll(".isDoneBox");
+let doneCheckBox = document.querySelectorAll(".isDoneBox");
 let doneModal = document.getElementById("doneModal");
 let doneTaskId = document.getElementById("doneTaskId");
 let closeDoneModal = document.querySelector(".doneClose");
@@ -115,39 +82,33 @@ let currentCheckbox = null; // Store the clicked checkbox
 
 const hideModalDone = () => {
   doneModal.style.display = "none"; // Hide modal
-
-  // If modal is closed without confirmation, uncheck the box
+  //If modal is closed without confirmation, uncheck the box
   if (currentCheckbox) {
     currentCheckbox.checked = false;
   }
 };
-
 const openModalDone = (checkbox, taskId) => {
   doneModal.style.display = "flex"; // Show modal
   doneTaskId.value = taskId; // Set hidden input with task ID
-  currentCheckbox = checkbox; // Store the clicked checkbox temporarily
+  currentCheckbox = checkbox;
 };
 
-// **🔹 Disable already checked checkboxes when page loads**
-doneCheckBoxes.forEach((btn) => {
+doneCheckBox.forEach((btn) => {
   if (btn.checked) {
-    btn.disabled = true;
+    btn.disabled = true; // Disable if already checked
   }
 });
 
-// **🔹 Handle checkbox click**
-doneCheckBoxes.forEach((btn) => {
+doneCheckBox.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    // e.preventDefault(); // Prevent immediate checking
-
+    //btn.disabled = true; // Disable the clicked checkbox
     const taskRow = e.target.closest("tr"); // Get parent row
     const taskId = taskRow.querySelector(".task-idReal").textContent.trim();
 
-    openModalDone(btn, taskId); // Open modal for confirmation
+    openModalDone(btn, taskId);
   });
 });
 
-// **🔹 When "Yes" button is clicked**
 confirmDoneBtn.addEventListener("click", () => {
   if (currentCheckbox) {
     currentCheckbox.checked = true; // Keep it checked
@@ -155,6 +116,57 @@ confirmDoneBtn.addEventListener("click", () => {
   }
   hideModalDone();
 });
-
-// **🔹 When "Close" button (×) is clicked**
 closeDoneModal.addEventListener("click", hideModalDone);
+
+// let doneCheckBoxes = document.querySelectorAll(".isDoneBox");
+// let doneModal = document.getElementById("doneModal");
+// let doneTaskId = document.getElementById("doneTaskId");
+// let closeDoneModal = document.querySelector(".doneClose");
+// let confirmDoneBtn = document.getElementById("confirmDone"); // "Yes" button
+// let currentCheckbox = null; // Store the clicked checkbox
+
+// const hideModalDone = () => {
+//   doneModal.style.display = "none"; // Hide modal
+
+//   // If modal is closed without confirmation, uncheck the box
+//   if (currentCheckbox) {
+//     currentCheckbox.checked = false;
+//   }
+// };
+
+// const openModalDone = (checkbox, taskId) => {
+//   doneModal.style.display = "flex"; // Show modal
+//   doneTaskId.value = taskId; // Set hidden input with task ID
+//   currentCheckbox = checkbox; // Store the clicked checkbox temporarily
+// };
+
+// // **🔹 Disable already checked checkboxes when page loads**
+// doneCheckBoxes.forEach((btn) => {
+//   if (btn.checked) {
+//     btn.disabled = true;
+//   }
+// });
+
+// // **🔹 Handle checkbox click**
+// doneCheckBoxes.forEach((btn) => {
+//   btn.addEventListener("click", (e) => {
+//     // e.preventDefault(); // Prevent immediate checking
+
+//     const taskRow = e.target.closest("tr"); // Get parent row
+//     const taskId = taskRow.querySelector(".task-idReal").textContent.trim();
+
+//     openModalDone(btn, taskId); // Open modal for confirmation
+//   });
+// });
+
+// // **🔹 When "Yes" button is clicked**
+// confirmDoneBtn.addEventListener("click", () => {
+//   if (currentCheckbox) {
+//     currentCheckbox.checked = true; // Keep it checked
+//     currentCheckbox.disabled = true; // Disable after checking
+//   }
+//   hideModalDone();
+// });
+
+// // **🔹 When "Close" button (×) is clicked**
+// closeDoneModal.addEventListener("click", hideModalDone);
