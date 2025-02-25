@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>To-Do Manager | Account</title>
+  <link rel="stylesheet" href="./accountPage.css">
+</head>
+
+<body>
+  <header>
+    <h1 class="heading">To-Do Manager</h1>
+    <h3 class="title">Manage You task effectively</h3>
+  </header>
+
+  <!-- container div -->
+  <div class="container">
+
+    <!-- upper button section to select the login or signup form -->
+    <div class="slider"></div>
+    <div class="btn">
+      <button class="login">Login</button>
+      <button class="signup">Signup</button>
+    </div>
+
+    <!-- Form section that contains the login and the signup form -->
+    <div class="form-section">
+
+      <!-- login form -->
+      <form action="loginPage.html" method="post" class="login-box">
+        <input type="text" class="email ele" placeholder="Enter Your Username" required>
+        <input type="password" class="password ele" placeholder="password" required>
+        <button class="clkbtn">Login</button>
+      </form>
+
+      <!-- signup form -->
+      <form action="loginPage.html" method="post" class="signup-box">
+        <input type="text" class="name ele" placeholder="Enter Your Username">
+        <input type="email" class="email ele" placeholder="youremail@email.com">
+        <input type="password" class="password ele" placeholder="password">
+        <input type="password" class="password ele" placeholder="Confirm password">
+        <button class="clkbtn">Signup</button>
+      </form>
+    </div>
+  </div>
+  <script src="./accountPage.js"></script>
+</body>
+
+</html>
