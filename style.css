@@ -26,6 +26,9 @@ body {
   z-index: 20;
   box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
+.profile {
+  width: 40px;
+}
 /* --- Logo Section Style ---*/
 .logoContainer {
   display: flex;

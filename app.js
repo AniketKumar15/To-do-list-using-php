@@ -1,3 +1,5 @@
+/*--------------- Edit Modal ------------------ */
+
 // Get modal and buttons
 const modal = document.getElementById("editModal");
 const closeModal = document.querySelector(".close");
@@ -38,7 +40,7 @@ editButtons.forEach((btn) => {
 // Close modal when clicking close button
 closeModal.addEventListener("click", hideModal);
 
-
+/*--------------- Delete Modal ------------------ */
 // Delete section
 let deleteBtn = document.querySelectorAll(".delete-btn");
 let deleteModal = document.getElementById("deleteModal");
@@ -72,6 +74,7 @@ window.addEventListener("click", (event) => {
   }
 });
 
+/*--------------- Done Modal ------------------ */
 // Done modal Section
 let doneCheckBox = document.querySelectorAll(".isDoneBox");
 let doneModal = document.getElementById("doneModal");

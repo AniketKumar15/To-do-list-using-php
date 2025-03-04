@@ -9,14 +9,19 @@
   if (!$conn) {
     die("Not able to connect");
   }
-
+  session_start();
+  if (!isset($_SESSION['userId'])) {
+    header("Location: accountPage/loginPage.php");
+    exit();
+  }
+  $userId = $_SESSION['userId'];
   if (isset($_POST['submit'])) {
     // Get task and priority from form
     $task = mysqli_real_escape_string($conn, $_POST['task']);
     $priority = mysqli_real_escape_string($conn, $_POST['priority']);
 
     // Insert into database
-    $sql = "INSERT INTO todotask (task, priority, isDone) VALUES ('$task', '$priority', 0)";
+    $sql = "INSERT INTO todotask (task, priority, isDone, userId) VALUES ('$task', '$priority', 0, $userId)";
     
     if (mysqli_query($conn, $sql)) {
         header("Location: index.php"); // Redirect to prevent form resubmission
@@ -74,6 +79,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="shortcut icon" href="./Img/Logo.png" type="image/x-icon">
 </head>
 
 <body>
@@ -143,13 +149,23 @@
       <img src="./Img/Logo.png" alt="logo">
       <span>To-Do Manager</span>
     </div>
-
+    
     <div class="useAuth">
-      <a href="#">Login</a>
-      <a href="#">Sign-Up</a>
+      <?php
+        if (isset($_SESSION['userId'])){
+          echo '
+          <img src="./img/profile.png" class = "profile"> 
+          <p> Hello, Mr. ' . $_SESSION['username']. '</p> 
+          <a href="/PhpProject/TodoList/accountPage/logout.php">Log out</a>';
+        }else{
+          echo '<a href="#">Login</a>
+                <a href="#">Sign-Up</a>';
+        }
+      ?>
+      
     </div>
   </nav>
-
+  <!-- NavBar Ended -->
   <!-------------- To Do Add from Section  ---------------->
   <form action="./index.php" method="post" class="input-container">
     <input type="text" name="task"  placeholder="Enter your task..." required>
@@ -171,6 +187,7 @@
 
     <button type="submit" name="submit">Add Note</button>
   </form>
+  <!-- To Do Add from Ended -->
   <!-------------- To Do Info Section  ---------------->
   <div class="toDoInfo">
     <div class="tableData">
@@ -186,7 +203,8 @@
         </thead>
         <tbody>
           <?php
-            $sql = "SELECT * FROM `todotask`;";
+            
+            $sql = "SELECT * FROM `todotask`WHERE userId = '$userId'";
             $result = mysqli_query($conn, $sql);
             $sno = 0;
             while ($row = mysqli_fetch_assoc($result)) {
@@ -221,14 +239,14 @@
             </tr>";
             }
           ?>
-
-          <!-- Extra -->
-
         </tbody>
       </table>
     </div>
   </div>
   
+  <footer style="color:white; background: #000; text-align:center; padding:10px 0px;">
+    <p>User Login and Sign-Up not work yet</p>
+  </footer>
   <script src="./app.js"></script>
 </body>
 
