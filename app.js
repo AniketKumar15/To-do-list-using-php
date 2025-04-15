@@ -74,7 +74,7 @@ window.addEventListener("click", (event) => {
   }
 });
 
-/*--------------- Done Modal ------------------ */
+/*--------------- Donew Modal ------------------ */
 // Done modal Section
 let doneCheckBox = document.querySelectorAll(".isDoneBox");
 let doneModal = document.getElementById("doneModal");

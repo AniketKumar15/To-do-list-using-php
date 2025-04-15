@@ -1,0 +1,15 @@
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 1px black;
+}
+h1 {
+  font-size: 100px;
+}
+h2 {
+  font-size: 50px;
+}

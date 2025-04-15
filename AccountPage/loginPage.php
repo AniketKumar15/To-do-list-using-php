@@ -1,73 +1,58 @@
 <?php
-  session_start();
-  $server = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "todoapplication";
+session_start();
+include "../db.php";
+$errorMessage = ""; // Store login errors
 
-  $conn = mysqli_connect($server, $username, $password, $dbname);
+if (isset($_POST['createAccount'])) {
+  $name = $_POST['user-name'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $cPassword = $_POST['cPassword'];
 
-  if (!$conn) {
-    die("Not able to connect with database -> " . mysqli_error($conn));
-  }
-  $errorMessage = ""; // Store login errors
-
-  if (isset($_POST['createAccount'])) {
-    $name = $_POST['user-name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $cPassword = $_POST['cPassword'];
-
-    $sql = "SELECT * FROM `userdata` WHERE username = '$name'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_num_rows($result);
-    if ($row > 0) {
-      echo "<p class='title'>User name is already exist</p>";
-    }
-    else
-    {
-      if ($password == $cPassword) {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO `userdata`(`username`, `email`, `password`) VALUES ('$name','$email','$hashedPassword')";
-        $res = mysqli_query($conn, $sql);
-        if ($res) {
-          header("Location: loginPage.php");
-          exit();
-        }
-        else{
-          die("Not able to create account" . mysqli_error($conn));
-        }
-      }
-      else {
-        echo "<p class='title'>Password and cPassword is not same</p>";
-      }
-    }
-    // header("Location: loginPage.php");
-  }
-
-  if (isset($_POST['loginAccount'])) {
-    $name = $_POST['user-name'];
-    $password = $_POST['password'];
-    $sql = "SELECT * FROM `userdata` WHERE username = '$name'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_num_rows($result);
-    if ($result && $row == 1){
-      $user = mysqli_fetch_assoc($result);
-      $hashedPassword = $user['password'];
-      if (password_verify($password, $hashedPassword)) {
-        $_SESSION['userId'] = $user['id'];
-        $_SESSION['username'] = $name;
-        header("Location: ../index.php");
+  $sql = "SELECT * FROM `userdata` WHERE username = '$name'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_num_rows($result);
+  if ($row > 0) {
+    echo "<p class='title'>User name is already exist</p>";
+  } else {
+    if ($password == $cPassword) {
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+      $sql = "INSERT INTO `userdata`(`username`, `email`, `password`) VALUES ('$name','$email','$hashedPassword')";
+      $res = mysqli_query($conn, $sql);
+      if ($res) {
+        header("Location: loginPage.php");
         exit();
+      } else {
+        die("Not able to create account" . mysqli_error($conn));
       }
-      else{
-        $errorMessage = "Invalid Username or Password!";
-      }
-    }
-    else{
-      $errorMessage = "User does not exist!";
+    } else {
+      echo "<p class='title'>Password and cPassword is not same</p>";
     }
   }
+  // header("Location: loginPage.php");
+}
+
+if (isset($_POST['loginAccount'])) {
+  $name = $_POST['user-name'];
+  $password = $_POST['password'];
+  $sql = "SELECT * FROM `userdata` WHERE username = '$name'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_num_rows($result);
+  if ($result && $row == 1) {
+    $user = mysqli_fetch_assoc($result);
+    $hashedPassword = $user['password'];
+    if (password_verify($password, $hashedPassword)) {
+      $_SESSION['userId'] = $user['id'];
+      $_SESSION['username'] = $name;
+      header("Location: ../herosection.php");
+      exit();
+    } else {
+      $errorMessage = "Invalid Username or Password!";
+    }
+  } else {
+    $errorMessage = "User does not exist!";
+  }
+}
 ?>
 
 
@@ -82,8 +67,9 @@
 </head>
 
 <body>
-  <?php 
-    if ($errorMessage): ?> <p style="color: red;"><?= htmlspecialchars($errorMessage); ?></p>
+  <?php
+  if ($errorMessage): ?>
+    <p style="color: red;"><?= htmlspecialchars($errorMessage); ?></p>
   <?php endif; ?>
   <header>
     <h1 class="heading">To-Do Manager</h1>
